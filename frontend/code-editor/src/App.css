@@ -5,6 +5,13 @@
   box-sizing: border-box;
 }
 
+#statistics {
+  display: flex;
+  justify-content: space-between; /* Aligns items to the left and right */
+  background-color: #1e232a;
+  padding: 10px;
+}
+
 /* Container styles */
 .container {
   display: flex;
