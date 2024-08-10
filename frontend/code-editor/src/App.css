@@ -5,6 +5,24 @@
   box-sizing: border-box;
 }
 
+/* Custom scrollbar styles */
+#terminal::-webkit-scrollbar {
+  width: 8px;
+}
+
+#terminal::-webkit-scrollbar-track {
+  background: #0d1117;
+}
+
+#terminal::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 8px;
+}
+
+#terminal::-webkit-scrollbar-thumb:hover {
+  background: #58a6ff;
+}
+
 /* Container styles */
 .container {
   display: flex;
@@ -16,6 +34,7 @@
   overflow: hidden;
 }
 
+/* Header styles */
 header {
   background-color: #161b22;
   color: #c9d1d9;
@@ -24,6 +43,7 @@ header {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
+/* Main styles */
 main {
   flex: 1;
   display: flex;
@@ -33,6 +53,7 @@ main {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
 }
 
+/* Wrapper styles */
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -93,6 +114,7 @@ textarea#codeEditor {
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
+/* Header for editor section */
 .editor-header {
   display: flex;
   justify-content: space-between;
@@ -122,6 +144,12 @@ textarea#codeEditor {
   color: #c9d1d9;
   border-radius: 8px;
   font-size: 14px;
+  outline: none; /* Remove the default outline */
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3); /* Optional: add a subtle inset shadow */
+}
+
+#languageSelect:focus {
+  outline: none; /* Remove the focus outline */
 }
 
 #terminal {
@@ -135,28 +163,17 @@ textarea#codeEditor {
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
   color: #c9d1d9;
   font-family: monospace;
+  overflow: hidden; /* Hide scrollbars */
 }
 
-#terminal-content {
+#terminalContent {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  padding-bottom: 10px;
-}
-
-#output {
-  flex: 1;
-  background-color: #0d1117;
-  border: none;
-  color: #c9d1d9;
+  overflow-y: auto; /* Allow scrolling in content area */
   white-space: pre-wrap;
-  overflow-wrap: break-word;
-  padding: 5px;
-  margin-bottom: 10px;
+  word-wrap: break-word;
 }
 
-#inputArea {
+#terminalInput {
   width: 100%;
   padding: 10px;
   background-color: #161b22;
@@ -167,4 +184,5 @@ textarea#codeEditor {
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
   resize: none;
   outline: none;
+  margin-top: 10px; /* Space between terminal content and input */
 }
