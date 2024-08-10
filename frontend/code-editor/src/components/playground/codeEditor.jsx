@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from 'axios';
+import './codeEditor.css';
 
 const CodeEditor=()=> {
     const [code, setCode] = useState('');
@@ -66,7 +67,7 @@ const CodeEditor=()=> {
             </div>
             <div id="right-pane" className="split">
               <div id="terminal">
-                <div id="terminal-content">
+                <div id="terminalContent">
                 {after && (
                   <div id="statistics">
                     <span className="stat-left">memory: {execMemory} kbs</span>
@@ -76,7 +77,7 @@ const CodeEditor=()=> {
                 <div id="output">{output}</div>
                 </div>
                 <textarea
-                  id="inputArea"
+                  id="terminalInput"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Enter your input here..."
