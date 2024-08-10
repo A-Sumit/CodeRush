@@ -1,4 +1,4 @@
-import { python } from 'compile-run';
+import { cpp } from 'compile-run';
 
 export const runPythonCode = async (sourceCode) => {
     try {
