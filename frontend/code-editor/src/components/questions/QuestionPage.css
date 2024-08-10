@@ -1,0 +1,137 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #161b22;
+    color: #c9d1d9;
+  }
+  
+  .header-title {
+    font-size: 24px;
+  }
+  
+  .header-buttons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .language-select {
+    margin-right: 10px;
+  }
+  
+  #runButton, #submitButton {
+    margin-right: 10px;
+    padding: 8px 16px;
+    background-color: #238636;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .wrapper {
+    display: flex;
+    flex: 1;
+    background-color: #0d1117;
+    padding: 20px;
+    
+  }
+  
+  #page-splitter {
+    display: flex;
+    flex: 1;
+  }
+  
+  #left-pane {
+    display: flex;
+    flex-direction: column;
+    width: 35%;  /* Set the width of the left pane to 35% */
+    background-color: #0d1117;
+    border-radius: 8px;
+    color: #c9d1d9;
+    padding: 10px;
+  }
+  
+  #question-section {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    background-color: #161b22;
+    border-radius: 8px;
+    padding: 10px;
+    overflow-y: auto;
+    width: 70vh;
+  }
+  
+  #question-section h2 {
+    margin-bottom: 10px;
+  }
+  
+  #terminalInput {
+    flex: 1;
+    width: 100%;
+    resize: none;
+    background-color: #0d1117;
+    border: none;
+    color: #c9d1d9;
+    padding: 10px;
+    border-radius: 4px;
+    overflow-y: auto;
+  }
+  
+  #divider {
+    width: 5px;
+    cursor: ew-resize;
+    background-color: #0d1117;
+  }
+  
+  #right-pane {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #161b22;
+    border-radius: 8px;
+    margin-left: 10px;
+    padding: 10px;
+  }
+  
+  #editor-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #0d1117;
+    border-radius: 8px;
+  }
+  
+  #codeEditor {
+    flex: 1;
+    width: 100%;
+    resize: none;
+    background-color: #0d1117;
+    border: none;
+    color: #c9d1d9;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  
+  #terminal {
+    flex: 1;
+    background-color: #161b22;
+    color: #c9d1d9;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+    overflow-y: auto;
+  }
+  
+  #terminalContent {
+    white-space: pre-wrap;
+  }
+  
