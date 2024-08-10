@@ -2,9 +2,9 @@ import {executeCppCode} from '../services/codeService.mjs';
 import {Problem} from '../models/problem.mjs';
 
 export const setProblem = async (req, res) => {
-    const { problemID, problemStatement, testcases } = req.body;
+    const { problemID, problemName,problemStatement, testcases } = req.body;
     try {
-        const newProblem = new Problem({ problemID, problemStatement, testcases });
+        const newProblem = new Problem({ problemID,problemName,problemStatement, testcases });
         await newProblem.save();
         res.status(201).json({ message: 'Problem added successfully!' });
     } catch (err) {
@@ -82,6 +82,25 @@ export const submit = async (req, res) => {
 };
 
 export const getProblem = async (req, res) => {
+    const { problemID } = req.params; // Extract problemID from URL parameters
+
+    try {
+        // Fetch the problem from the database
+        const problem = await Problem.findOne({ problemID });
+
+        if (!problem) {
+            return res.status(404).json({ error: 'Problem not found' });
+        }
+
+        // Return the problem details
+        return res.json(problem);
+    } catch (err) {
+        return res.status(500).json({ error: err.message });
+    }
+
+};
+
+export const getAllProblem = async (req, res) => {
     try {
         const problems = await Problem.find({});
         res.json(problems);
@@ -89,7 +108,6 @@ export const getProblem = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
-
 
 export const executeCode = async (req, res) => {
     const { filePath, sourceCode, input } = req.body;

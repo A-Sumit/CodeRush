@@ -7,6 +7,7 @@ const testcaseSchema = new mongoose.Schema({
 
 const problemSchema = new mongoose.Schema({
     problemID: { type: String, required: true, unique: true },
+    problemName: { type: String, required: true },
     problemStatement: { type: String, required: true },
     testcases: [testcaseSchema]  // Array of testcases
 });
