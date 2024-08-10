@@ -11,7 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/coding-app" element={<CodeEditor />} />
-        <Route path="/question/:id" element={<QuestionPage />} />
+        <Route path="/question/:problemID" element={<QuestionPage />} />
       </Routes>
     </Router>
   );

@@ -14,7 +14,7 @@ function Homepage() {
           <h2>Popular Questions</h2>
           <ul>
             {/* Update links to point to specific question pages */}
-            <li><Link to="/question/1">Question 1: Example Question</Link></li>
+            {/* <li><Link to="/question/1">Question 1: Example Question</Link></li> */}
             <li><Link to="/question/2">Question 2: Another Example</Link></li>
             <li><Link to="/question/3">Question 3: Yet Another</Link></li>
           </ul>
