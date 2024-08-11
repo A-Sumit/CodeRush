@@ -228,6 +228,28 @@ export const contestSubmit = async  (req, res) => {
     }
 };
 
+export const getLeaderBoard= async (req, res) => {
+    const { contestId } = req.params;
+    try {
+        const users = await UserModel.find({ 'contests.contestId': contestId });
+
+        const leaderboard = users
+            .map(user => {
+                const contest = user.contests.find(c => c.contestId == contestId);
+                return {
+                    userId: user.userId,
+                    username: user.username,
+                    score: contest.score
+                };
+            })
+            .sort((a, b) => b.score - a.score);
+
+        res.json(leaderboard);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
 export const testEndpoint = (req, res) => {
     res.send('hey working');
 };
