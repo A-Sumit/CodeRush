@@ -1,6 +1,7 @@
 import {executeCppCode} from '../services/codeService.mjs';
-import {Problem} from '../models/problem.mjs';
-
+import {Problem,Contest} from '../models/problem.mjs';
+import { Submission } from '../models/submission.mjs';
+import {UserModel} from '../models/userModel.mjs';
 export const setProblem = async (req, res) => {
     const { problemID, problemName,problemStatement, testcases } = req.body;
     try {
@@ -133,6 +134,97 @@ const coderunner = async (filepath,sourceCode, input) => {
         return result;
     } catch (err) {
         return err;
+    }
+};
+
+export const createContest = async (req,res) =>{
+    const { contestId, contestName, contestProblems } = req.body;
+    try {
+        const contest = new Contest({ contestId, contestName, contestProblems });
+        await contest.save();
+        res.status(201).json(contest);
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
+}
+
+export const getAllContest = async(req,res) =>{
+    try{
+        const all_contest = await Contest.find();
+        res.json(all_contest);
+    }
+    catch(err){
+        res.status(500).json({err:err.message})
+    }
+}
+
+export const getContest = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const contest = await Contest.findOne({ contestId: id });
+        if (!contest) {
+            return res.status(404).json({ error: 'Contest not found' });
+        }
+        res.json(contest);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+export const contestSubmit = async  (req, res) => {
+    const { contestId, problemID } = req.params;
+    const { userId, code } = req.body;
+    try {
+        const contest = await Contest.findOne({ contestId });
+        if (!contest) {
+            return res.status(404).json({ error: 'Contest not found' });
+        }
+
+        const problem = contest.contestProblems.find(p => p.problemID === problemID);
+        if (!problem) {
+            return res.status(404).json({ error: 'Problem not found' });
+        }
+
+        let isCorrect = true;
+        let totalScore = 0;
+        for (let testcase of problem.testcases) {
+            const result = await cpp.runSource(code, { stdin: testcase.input });
+            if (result.stdout.trim() !== testcase.expectedOutput.trim()) {
+                isCorrect = false;
+                break;
+            }
+            totalScore += 10;
+        }
+
+        const submission = new Submission({
+            userId,
+            contestId,
+            problemID,
+            code,
+            isCorrect,
+            score: isCorrect ? totalScore : 0
+        });
+
+        await submission.save();
+
+        if (isCorrect) {
+            const user = await UserModel.findOne({ userId });
+            if (user) {
+                const contestIndex = user.contests.findIndex(c => c.contestId === contestId);
+                if (contestIndex >= 0) {
+                    user.contests[contestIndex].score += totalScore;
+                } else {
+                    user.contests.push({ contestId, score: totalScore });
+                }
+                await user.save();
+            } else {
+                return res.status(404).json({ error: 'User not found' });
+            }
+        }
+
+        res.json(submission);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
 };
 
