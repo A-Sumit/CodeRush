@@ -6,9 +6,12 @@ import './Homepage.css';
 
 function Homepage() {
   const [problems, setProblems] = useState([]);
+  const [contests, setContests] = useState([
+    { id: 1, name: 'Summer Coding Challenge' },
+    { id: 2, name: 'Winter Algorithm Sprint' }
+  ]); // Dummy data for contests
 
   useEffect(() => {
-    // Fetch problems from API
     axios.get('http://localhost:8080/api/problem')
       .then(response => {
         setProblems(response.data);
@@ -38,9 +41,16 @@ function Homepage() {
             ))}
           </ul>
         </div>
-        <div className="contests-box">
-          <h1>Contests</h1>
-          <Link to="/contests" className="contest-button">View Contests</Link>
+        {/* Sidebar for Contests */}
+        <div className="sidebar">
+          <h2>Contests</h2>
+          <ul>
+            {contests.map(contest => (
+              <li key={contest.id}>
+                <Link to={`/contest/${contest.id}`}>{contest.name}</Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </main>
     </div>

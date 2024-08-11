@@ -1,22 +1,23 @@
 /* Homepage.css */
+
 .homepage-container {
   display: flex;
   flex-direction: column;
   height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #0a0e14; /* Darker background for better contrast */
+  background-color: #0a0e14;
   color: #c9d1d9;
   overflow: auto;
 }
 
 .homepage-header {
-  background-color: #141a23; /* Slightly darker for contrast */
+  background-color: #141a23;
   color: #c9d1d9;
   padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7); /* More prominent shadow */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 .header-buttons {
@@ -27,7 +28,7 @@
 .access-button, .add-problem-button {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #4f8edc; /* Slightly deeper blue for contrast */
+  background-color: #4f8edc;
   color: #ffffff;
   text-decoration: none;
   border-radius: 8px;
@@ -36,34 +37,33 @@
 }
 
 .access-button:hover, .add-problem-button:hover {
-  background-color: #3a75b7; /* Subtle change on hover */
-  transform: translateY(-2px); /* Gentle lift on hover */
+  background-color: #3a75b7;
+  transform: translateY(-2px);
 }
 
 .homepage-main {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
   padding: 20px;
   width: 100%;
-  height: 100%; /* Take full height */
+  height: calc(100% - 80px); /* Adjusted height to fit below the header */
+  box-sizing: border-box; /* Ensure padding is included in height calculation */
+  align-items: flex-start; /* Align items to the top */
 }
 
 .problems-list {
-  flex: 1;
-  width: 100%; /* Full width */
+  width: 75%; /* Adjusted width */
   padding: 20px;
-  background-color: #131820; /* Darker for contrast */
+  background: rgba(19, 24, 32, 0.8); /* Glassy effect */
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8); /* Stronger shadow for depth */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px); /* Glassy effect */
   overflow-y: auto;
 }
 
 .problems-list h1 {
   margin-bottom: 20px;
   font-size: 24px;
-  color: #58a6ff; /* Blue color for the title */
+  color: #58a6ff;
 }
 
 .problems-list ul {
@@ -74,61 +74,78 @@
 
 .problems-list li {
   margin-bottom: 15px;
-  background-color: #0d1219; /* Deeper background for contrast */
+  background: rgba(13, 18, 25, 0.8); /* Glassy effect */
   padding: 15px;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6); /* Subtle shadow */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
   transition: background-color 0.2s, transform 0.2s;
 }
 
 .problems-list li:hover {
-  background-color: #1a1f28; /* Slight change on hover */
-  transform: translateY(-2px); /* Subtle lift on hover */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7); /* Soft shadow on hover */
+  background: rgba(26, 31, 40, 0.8);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
 }
 
 .problems-list a {
   text-decoration: none;
-  color: #c9d1d9; /* Light text color */
+  color: #c9d1d9;
   font-weight: bold;
   display: block;
 }
 
 .problems-list a:hover {
-  color: #58a6ff; /* Blue color on hover */
+  color: #58a6ff;
 }
-/* Existing styles... */
 
-/* Styles for the contests box */
-.contests-box {
-  width: 100%;
+/* Sidebar Styles */
+.sidebar {
+  width: 25%; /* Adjusted width */
   padding: 20px;
-  background-color: #131820; /* Keep the dark background to match the homepage */
+  background: rgba(19, 24, 32, 0.8); /* Glassy effect */
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8); /* Strong shadow for depth */
-  margin-top: 20px; /* Space between the problems list and the contests box */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px); /* Glassy effect */
+  margin-left: 20px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start; /* Align items to the top */
 }
 
-.contests-box h1 {
-  color: #58a6ff; /* Blue color for the title */
-  margin-bottom: 10px;
+.sidebar h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #58a6ff;
 }
 
-.contest-button {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #4f8edc; /* Button color */
-  color: #ffffff;
-  text-decoration: none;
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin-bottom: 15px;
+  background: rgba(13, 18, 25, 0.8); /* Glassy effect */
+  padding: 15px;
   border-radius: 8px;
-  font-size: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
   transition: background-color 0.2s, transform 0.2s;
 }
 
-.contest-button:hover {
-  background-color: #3a75b7; /* Slightly darker blue on hover */
-  transform: translateY(-2px); /* Gentle lift on hover */
+.sidebar li:hover {
+  background: rgba(26, 31, 40, 0.8);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #c9d1d9;
+  font-weight: bold;
+  display: block;
+}
+
+.sidebar a:hover {
+  color: #58a6ff;
 }

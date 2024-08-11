@@ -77,4 +77,19 @@
   .contests-list a:hover {
     color: #58a6ff;
   }
+  .view-leaderboard {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4f8edc;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-top: 20px;
+    transition: background-color 0.2s, transform 0.2s;
+  }
   
+  .view-leaderboard:hover {
+    background-color: #3a75b7;
+    transform: translateY(-2px);
+  }

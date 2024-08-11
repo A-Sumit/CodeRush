@@ -4,7 +4,8 @@ import Homepage from './components/homepage/Homepage.js';
 import CodeEditor from './components/playground/codeEditor.jsx';
 import QuestionPage from './components/questions/QuestionPage.js';
 import AddProblemPage from './components/AddProblemPage/AddProblemPage.js';
-import Contests from './components/Contests/Contests.js'; // Import the new Contests component
+import Contests from './components/Contests/Contests.js';
+import Leaderboard from './components/Contests/LeaderBoard/LeaderBoard.js'; // Import the Leaderboard component
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
         <Route path="/coding-app" element={<CodeEditor />} />
         <Route path="/question/:problemID" element={<QuestionPage />} />
         <Route path="/add-problem" element={<AddProblemPage />} />
-        <Route path="/contests" element={<Contests />} /> {/* New route for contests */}
+        <Route path="/contests" element={<Contests />} />
+        <Route path="/leaderboard" element={<Leaderboard />} /> {/* New route for leaderboard */}
       </Routes>
     </Router>
   );
