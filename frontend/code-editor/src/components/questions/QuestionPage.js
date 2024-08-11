@@ -127,64 +127,65 @@ const QuestionPage = () => {
   };
   const testcasesToShow = problem.testcases.slice(0, Math.min(1, problem.testcases.length));
   return (
-    <>
-    { problem && <div className="container">
-      <header>
-        <ToastContainer/>
-        <div className="header-title">{problem.problemName}</div>
-        <div className="header-buttons">
-          <select
-            className="language-select"
-            id="languageSelect"
-            value={language}
-            onChange={(e) => setLanguage(e.target.value)}
-          >
-            <option value="cpp">C++</option>
-            <option value="python">Python</option>
-          </select>
-          <button id="runButton" onClick={handleRun}>Run</button>
-          <button id="submitButton" onClick={handleSubmit}>Submit</button>
-        </div>
-      </header>
-      <main>
-        <div className="wrapper">
-          <div id="page-splitter">
-            <div id="left-pane" style={{ width: leftWidth }}>
-              <div id="question-section">
-                <h2>Problem Statement</h2>
-                <h4>{problem.problemStatement}</h4>
-                <br/>
-                <ul>
-                  {testcasesToShow.map((testcase, index) => (
+     <>
+      {problem && <div className="container">
+        <header>
+          <ToastContainer />
+          <div className="header-title">{problem.problemName}</div>
+          <div className="header-buttons">
+            <select
+              className="language-select"
+              id="languageSelect"
+              value={language}
+              onChange={(e) => setLanguage(e.target.value)}
+            >
+              <option value="cpp">C++</option>
+              <option value="python">Python</option>
+            </select>
+            <button id="runButton" onClick={handleRun}>Run</button>
+            <button id="submitButton" onClick={handleSubmit}>Submit</button>
+          </div>
+        </header>
+        <main>
+          <div className="wrapper">
+            <div id="page-splitter">
+              <div id="left-pane" style={{ width: leftWidth }}>
+                <div id="question-section">
+                  <h2>Problem Statement</h2>
+                  <h4>{problem.problemStatement}</h4>
+                  <br />
+                  <ul>
+                    {testcasesToShow.map((testcase, index) => (
                       <li key={index}>
-                          <strong>Input:</strong> {testcase.input}<br />
-                          <strong>Expected Output:</strong> {testcase.output}
+                        <strong>Input:</strong> {testcase.input}<br />
+                        <strong>Expected Output:</strong> {testcase.output}
                       </li>
-                  ))}
-              </ul>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </div>
-            <div id="divider" ref={dividerRef} onMouseDown={handleMouseDown}></div>
-            <div id="right-pane">
-              <div id="editor-section">
-                <textarea
-                  id="codeEditor"
-                  value={code}
-                  onChange={(e) => setCode(e.target.value)}
-                  placeholder="Write your code here..."
-                ></textarea>
-                <div id="terminal" ref={terminalRef}>
-                  <div id="terminalContent">
-                    {terminalContent}
+              <div id="divider" ref={dividerRef} onMouseDown={handleMouseDown}></div>
+              <div id="right-pane">
+                <div id="editor-section">
+                  <textarea
+                    id="codeEditor"
+                    value={code}
+                    onChange={(e) => setCode(e.target.value)}
+                    placeholder="Write your code here..."
+                  ></textarea>
+                  <div id="terminal" ref={terminalRef}>
+                    <div id="terminalContent">
+                      {terminalContent}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </main>
-    </div>}
+        </main>
+      </div>}
     </>
+
   );
 }
 
