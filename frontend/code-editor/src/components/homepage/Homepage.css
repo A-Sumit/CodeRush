@@ -97,3 +97,38 @@
 .problems-list a:hover {
   color: #58a6ff; /* Blue color on hover */
 }
+/* Existing styles... */
+
+/* Styles for the contests box */
+.contests-box {
+  width: 100%;
+  padding: 20px;
+  background-color: #131820; /* Keep the dark background to match the homepage */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8); /* Strong shadow for depth */
+  margin-top: 20px; /* Space between the problems list and the contests box */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contests-box h1 {
+  color: #58a6ff; /* Blue color for the title */
+  margin-bottom: 10px;
+}
+
+.contest-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4f8edc; /* Button color */
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.contest-button:hover {
+  background-color: #3a75b7; /* Slightly darker blue on hover */
+  transform: translateY(-2px); /* Gentle lift on hover */
+}

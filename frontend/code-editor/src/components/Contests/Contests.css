@@ -1,0 +1,80 @@
+/* Contests.css */
+.contests-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0a0e14;
+    color: #c9d1d9;
+    overflow: auto;
+  }
+  
+  .contests-header {
+    background-color: #141a23;
+    color: #c9d1d9;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .back-home {
+    text-decoration: none;
+    color: #4f8edc;
+    font-size: 16px;
+    transition: color 0.2s;
+  }
+  
+  .back-home:hover {
+    color: #3a75b7;
+  }
+  
+  .contests-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .contests-list {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    background-color: #131820;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+    overflow-y: auto;
+  }
+  
+  .contests-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .contests-list li {
+    margin-bottom: 15px;
+    background-color: #0d1219;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    transition: background-color 0.2s, transform 0.2s;
+  }
+  
+  .contests-list li:hover {
+    background-color: #1a1f28;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+  }
+  
+  .contests-list a {
+    text-decoration: none;
+    color: #c9d1d9;
+    font-weight: bold;
+    display: block;
+  }
+  
+  .contests-list a:hover {
+    color: #58a6ff;
+  }
+  

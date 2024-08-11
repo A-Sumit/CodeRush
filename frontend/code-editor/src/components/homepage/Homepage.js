@@ -38,6 +38,10 @@ function Homepage() {
             ))}
           </ul>
         </div>
+        <div className="contests-box">
+          <h1>Contests</h1>
+          <Link to="/contests" className="contest-button">View Contests</Link>
+        </div>
       </main>
     </div>
   );
