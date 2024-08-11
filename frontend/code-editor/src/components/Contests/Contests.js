@@ -5,13 +5,12 @@ import axios from 'axios';
 import './Contests.css';
 
 function Contests() {
-  const [problems, setProblems] = useState([]);
-
+  const [contests, setContests] = useState([]);
   useEffect(() => {
     // Fetch problems for contests from API
-    axios.get('http://localhost:8080/api/problems-for-contests')
+    axios.get('http://localhost:8080/api/contests')
       .then(response => {
-        setProblems(response.data);
+        setContests(response.data);
       })
       .catch(error => {
         console.error('Error fetching problems:', error);
@@ -27,9 +26,9 @@ function Contests() {
       <main className="contests-main">
         <div className="contests-list">
           <ul>
-            {problems.map(problem => (
-              <li key={problem.problemID}>
-                <Link to={`/question/${problem.problemID}`}>{problem.problemName}</Link>
+            {contests.map(contest => (
+              <li key={contest.contestId}>
+                <Link to={`/contests/${contest.contestId}`}>{contest.contestName}</Link>
               </li>
             ))}
           </ul>
