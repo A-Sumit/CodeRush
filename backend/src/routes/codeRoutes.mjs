@@ -13,5 +13,6 @@ router.post('/create-contest',createContest);
 router.get('/contests',getAllContest);
 router.get('/contest/:id',getContest);
 router.post('/contests/:contestId/problems/:problemID/submit',contestSubmit);
+router.get('/leaderboard/:contestId',getLeaderBoard);
 
 export default router;
