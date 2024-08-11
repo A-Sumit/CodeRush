@@ -1,0 +1,62 @@
+/* AddProblemPage.css */
+.add-problem-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+    width: 100vw; /* Full width of the viewport */
+    background-color: #0d1117; /* Dark background to match your theme */
+    color: #c9d1d9; /* Light text color */
+  }
+  
+  form {
+    width: 80%; /* Adjust width as needed, e.g., 80% of the viewport width */
+    max-width: 800px; /* Limit the maximum width for larger screens */
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #161b22; /* Dark background for the form */
+    border: 1px solid #30363d; /* Darker border for the form */
+    color: #c9d1d9; /* Light text color for the form */
+  }
+  
+  form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #c9d1d9; /* Light text color for labels */
+  }
+  
+  form input, form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    background-color: #0d1117; /* Dark background for inputs and textarea */
+    color: #c9d1d9; /* Light text color */
+    border: 1px solid #30363d; /* Darker border */
+    border-radius: 5px;
+  }
+  
+  form button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+    background-color: #58a6ff; /* Button background */
+    color: #ffffff; /* Button text */
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  form button:hover {
+    background-color: #1f6feb; /* Darker blue on hover */
+  }
+  
+  .add-problem-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #c9d1d9;
+  }
+  
