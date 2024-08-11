@@ -1,5 +1,5 @@
 import express from 'express';
-import { submit,getProblem,getAllProblem,setProblem,executeCode, testEndpoint ,createContest, getAllContest, getContest} from '../controllers/codeController.mjs';
+import { contestSubmit,submit,getProblem,getAllProblem,setProblem,executeCode, testEndpoint ,createContest, getAllContest, getContest} from '../controllers/codeController.mjs';
 
 const router = express.Router();
 

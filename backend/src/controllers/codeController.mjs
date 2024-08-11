@@ -1,3 +1,4 @@
+import { cpp } from 'compile-run';
 import {executeCppCode} from '../services/codeService.mjs';
 import {Problem,Contest} from '../models/problem.mjs';
 import { Submission } from '../models/submission.mjs';
@@ -187,42 +188,68 @@ export const contestSubmit = async  (req, res) => {
 
         let isCorrect = true;
         let totalScore = 0;
-        for (let testcase of problem.testcases) {
-            const result = await cpp.runSource(code, { stdin: testcase.input });
-            if (result.stdout.trim() !== testcase.expectedOutput.trim()) {
-                isCorrect = false;
-                break;
-            }
-            totalScore += 10;
-        }
-
-        const submission = new Submission({
-            userId,
-            contestId,
-            problemID,
-            code,
-            isCorrect,
-            score: isCorrect ? totalScore : 0
-        });
-
-        await submission.save();
-
-        if (isCorrect) {
-            const user = await UserModel.findOne({ userId });
-            if (user) {
-                const contestIndex = user.contests.findIndex(c => c.contestId === contestId);
-                if (contestIndex >= 0) {
-                    user.contests[contestIndex].score += totalScore;
-                } else {
-                    user.contests.push({ contestId, score: totalScore });
+        for (const testcase of problem.testcases) {
+            const { input, output: expectedOutput } = testcase;
+            try {
+                // Call the external function to run the code with the current input
+                const response = await coderunner(false, code, input);
+                // Handle case where the code runner returns an error code
+                if (response === -1) {
+                    console.log('Error: Code runner returned -1 (Empty code)');
+                    return res.json({ result: 'Empty code' });
                 }
-                await user.save();
-            } else {
-                return res.status(404).json({ error: 'User not found' });
+        
+                // Debugging: Log the response from the code runner
+                console.log('Code runner response:', response);
+                const actualOutput = response.result.stdout;
+                const stderr = response.result.stderr;
+                // const actualOutput="5";
+        
+                // Compare the actual output with the expected output
+                if (stderr) {
+                    console.log('Error: stderr is not empty:', stderr);
+                    allTestsPassed = false;
+                    break;
+                }
+        
+                if (actualOutput.trim() !== expectedOutput.trim()) {
+                    console.log('Test failed: actual output does not match expected output');
+                    isCorrect = false;
+                    break;
+                }
+                totalScore += 10;
+            } catch (error) {
+                console.error('Error during code execution:', error.message);
+                return res.status(500).json({ error: 'Internal server error' });
             }
         }
-
-        res.json(submission);
+            const submission = new Submission({
+                userId,
+                contestId,
+                problemID,
+                code,
+                isCorrect,
+                score: isCorrect ? totalScore : 0
+            });
+    
+            await submission.save();
+    
+            if (isCorrect) {
+                const user = await UserModel.findOne({ userId });
+                if (user) {
+                    const contestIndex = user.contests.findIndex(c => c.contestId === contestId);
+                    if (contestIndex >= 0) {
+                        user.contests[contestIndex].score += totalScore;
+                    } else {
+                        user.contests.push({ contestId, score: totalScore });
+                    }
+                    await user.save();
+                } else {
+                    return res.status(404).json({ error: 'User not found' });
+                }
+            }
+    
+            res.json(submission);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

@@ -10,5 +10,5 @@ const userSchema = new mongoose.Schema({
     contests: [contestScoreSchema]
 });
 
-const UserModel = mongoose.model('User', userSchema);
-export default User;
+export const UserModel = mongoose.model('User', userSchema);
+// export default User;
