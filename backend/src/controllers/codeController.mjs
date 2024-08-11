@@ -277,6 +277,17 @@ export const getLeaderBoard= async (req, res) => {
     }
 };
 
+export const addUser =async (req,res)=>{
+    const { userId, username,contests } = req.body;
+    try {
+        const newUser = new UserModel({ userId, username,contests });
+        await newUser.save();
+        res.status(201).json({ message: 'User added successfully!' });
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
+}
+
 export const testEndpoint = (req, res) => {
     res.send('hey working');
 };

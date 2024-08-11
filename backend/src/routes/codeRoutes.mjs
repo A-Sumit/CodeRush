@@ -1,11 +1,12 @@
 import express from 'express';
-import { contestSubmit,submit,getProblem,getAllProblem,setProblem,executeCode, testEndpoint ,createContest, getAllContest, getContest} from '../controllers/codeController.mjs';
+import { addUser,getLeaderBoard,contestSubmit,submit,getProblem,getAllProblem,setProblem,executeCode, testEndpoint ,createContest, getAllContest, getContest} from '../controllers/codeController.mjs';
 
 const router = express.Router();
 
 router.get('/test', testEndpoint);
 router.post('/run', executeCode);
 router.post('/setproblem', setProblem);
+router.post('/adduser', addUser);
 router.post('/problem/submit/:problemID', submit);
 router.get('/problem', getAllProblem);
 router.get('/problem/:problemID', getProblem);
