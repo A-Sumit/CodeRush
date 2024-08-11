@@ -233,13 +233,17 @@ export const contestSubmit = async  (req, res) => {
             });
     
             await submission.save();
-    
+            // console.log(isCorrect);
+            // console.log(totalScore);
             if (isCorrect) {
                 const user = await UserModel.findOne({ userId });
-                if (user) {
-                    const contestIndex = user.contests.findIndex(c => c.contestId === contestId);
+                if (user!==null) {
+                    // console.log(user);
+                    const contestIndex = user.contests.findIndex(c => c.contestId === Number(contestId));
+                    console.log(contestIndex);
                     if (contestIndex >= 0) {
                         user.contests[contestIndex].score += totalScore;
+                        console.log(totalScore);
                     } else {
                         user.contests.push({ contestId, score: totalScore });
                     }
