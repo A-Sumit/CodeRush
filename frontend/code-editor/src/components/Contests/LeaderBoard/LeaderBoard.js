@@ -1,21 +1,28 @@
-import React from 'react';
+import React, { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './LeaderBoard.css';
+import axios from 'axios';
 
 function Leaderboard() {
   // Example leaderboard data
-  const leaderboardData = [
-    { rank: 1, name: 'Alice', score: 1500 },
-    { rank: 2, name: 'Bob', score: 1400 },
-    { rank: 3, name: 'Charlie', score: 1300 },
-    // Add more entries as needed
-  ];
+  const [leaderboardData,setData] = useState([]);
+
+  useEffect(() => {
+    // Fetch problems for contests from API
+    axios.get('http://localhost:8080/api/leaderboard/1')
+      .then(response => {
+        setData(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching problems:', error);
+      });
+  }, []);
 
   return (
     <div className="leaderboard-container">
       <header className="leaderboard-header">
         <h1>Leaderboard</h1>
-        <Link to="/contests" className="back-to-contests">Back to Contests</Link>
+        <Link to="/contests/1" className="back-to-contests">Back to Contests</Link>
       </header>
       <main className="leaderboard-main">
         <table className="leaderboard-table">
@@ -29,8 +36,8 @@ function Leaderboard() {
           <tbody>
             {leaderboardData.map((entry) => (
               <tr key={entry.rank}>
-                <td>{entry.rank}</td>
-                <td>{entry.name}</td>
+                <td>1</td>
+                <td>{entry.username}</td>
                 <td>{entry.score}</td>
               </tr>
             ))}
