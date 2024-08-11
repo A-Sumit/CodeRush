@@ -6,9 +6,23 @@ import './Homepage.css';
 
 function Homepage() {
   const [problems, setProblems] = useState([]);
+  const [ready, setReady] = useState(false);
+  const [contests, setContests] = useState([]); // Dummy data for contests
+  
+  useEffect(() => {
+    // Fetch problems for contests from API
+    axios.get('http://localhost:8080/api/contests')
+      .then(response => {
+        setContests(response.data);
+        setReady(true);
+        // console.log(response);
+      })
+      .catch(error => {
+        console.error('Error fetching problems:', error);
+      });
+  }, []);
 
   useEffect(() => {
-    // Fetch problems from API
     axios.get('http://localhost:8080/api/problem')
       .then(response => {
         setProblems(response.data);
@@ -38,10 +52,18 @@ function Homepage() {
             ))}
           </ul>
         </div>
-        <div className="contests-box">
-          <h1>Contests</h1>
-          <Link to="/contests" className="contest-button">View Contests</Link>
-        </div>
+        {/* Sidebar for Contests */}
+        {ready &&
+          <div className="sidebar">
+          <h2>Contests</h2>
+          <ul>
+            {contests.map(contest => (
+              <li key={contest.id}>
+                <Link to={`/contests/${contest.contestId}`}>{contest.contestName}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>}
       </main>
     </div>
   );
