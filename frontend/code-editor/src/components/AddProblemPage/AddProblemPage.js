@@ -1,4 +1,3 @@
-// AddProblemPage.js
 import React from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import axios from 'axios';
@@ -31,23 +30,23 @@ function AddProblemPage() {
     <div className="add-problem-container">
       <h1>Submit Your Own Problem</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
+        <div className="form-group">
           <label>Problem ID:</label>
           <input {...register('problemId')} required />
         </div>
-        <div>
+        <div className="form-group">
           <label>Problem Name:</label>
           <input {...register('title')} required />
         </div>
-        <div>
+        <div className="form-group">
           <label>Problem Description:</label>
           <textarea {...register('description')} required />
         </div>
 
-        <div>
+        <div className="form-group">
           <label>Test Cases:</label>
           {fields.map((field, index) => (
-            <div key={field.id}>
+            <div key={field.id} className="testcase-group">
               <input
                 placeholder="Input"
                 {...register(`testcases.${index}.input`)}
@@ -58,20 +57,21 @@ function AddProblemPage() {
                 {...register(`testcases.${index}.output`)}
                 required
               />
-              <button type="button" onClick={() => remove(index)}>
+              <button type="button" className="remove-button" onClick={() => remove(index)}>
                 Remove
               </button>
             </div>
           ))}
           <button
             type="button"
+            className="add-button"
             onClick={() => append({ input: '', output: '' })}
           >
             Add Test Case
           </button>
         </div>
 
-        <button type="submit">Submit Problem</button>
+        <button type="submit" className="submit-button">Submit Problem</button>
       </form>
     </div>
   );
