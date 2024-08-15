@@ -45,6 +45,6 @@ Welcome to **CodeRush**, your one-stop solution for coding practice, problem-sol
    
 3. **Install BackEnd dependencies and start**:
    ```bash
-   cd ../backend
+   cd backend
    npm install
    node src/app.mjs 
