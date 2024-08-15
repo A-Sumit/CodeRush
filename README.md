@@ -36,9 +36,15 @@ Welcome to **CodeRush**, your one-stop solution for coding practice, problem-sol
    ```bash
    git clone https://github.com/A-Sumit/CodeRush.git
    cd CodeRush
+   
+2. **Install frontEnd dependencies and start**:
+   ```bash
    cd frontend
    npm install
    npm start
+   
+3. **Install BackEnd dependencies and start**:
+   ```bash
    cd ../backend
    npm install
    node src/app.mjs 
